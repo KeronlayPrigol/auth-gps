@@ -1,0 +1,510 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg:       #0f172a;
+  --surface:  #1e293b;
+  --surface2: #273549;
+  --border:   #334155;
+  --text:     #f1f5f9;
+  --muted:    #94a3b8;
+  --blue:     #3b82f6;
+  --green:    #22c55e;
+  --red:      #ef4444;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── Layout ── */
+
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+.map-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.map-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Sidebar ── */
+
+.sidebar {
+  width: 320px;
+  min-width: 320px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px 20px;
+  overflow-y: auto;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo {
+  font-size: 1.75rem;
+  background: var(--blue);
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brand {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.brand-sub {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── Status Panel ── */
+
+.status-panel h3 {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: var(--surface2);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  gap: 8px;
+}
+
+.status-label {
+  font-size: 0.82rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.status-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.status-value {
+  font-size: 0.78rem;
+  color: var(--text);
+}
+
+.mono {
+  font-family: 'Consolas', 'Fira Code', monospace;
+}
+
+.status-error {
+  font-size: 0.78rem;
+  color: var(--red);
+}
+
+/* ── Badges ── */
+
+.badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 99px;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
+
+.badge-ok {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--green);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.badge-fail {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--red);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.badge-loading {
+  background: rgba(148, 163, 184, 0.1);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  letter-spacing: 3px;
+}
+
+/* ── Auth Screen ── */
+
+.auth-screen {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+}
+
+.auth-form {
+  width: 340px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.user-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.role-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 99px;
+  letter-spacing: 0.4px;
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--blue);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+/* ── Login Form ── */
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-group input {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--text);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.15s;
+  width: 100%;
+}
+
+.form-group input:focus {
+  border-color: var(--blue);
+}
+
+.form-group input::placeholder {
+  color: var(--muted);
+}
+
+.form-group input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-login {
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  margin-top: 2px;
+}
+
+.btn-login:hover:not(:disabled) {
+  opacity: 0.88;
+}
+
+.btn-login:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ── Alerts ── */
+
+.alert {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.alert-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+}
+
+.alert-success {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #86efac;
+}
+
+.demo-hint {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--muted);
+  padding-top: 4px;
+}
+
+/* ── Zone Config ── */
+
+.zone-config {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.zone-config-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.zone-config-toggle:hover {
+  color: var(--text);
+  border-color: var(--blue);
+}
+
+.zone-config-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  padding: 14px;
+}
+
+.zone-row {
+  display: flex;
+  gap: 8px;
+}
+
+.zone-row .form-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.zone-row .form-group input {
+  font-size: 0.78rem;
+  padding: 8px 10px;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  text-align: left;
+}
+
+.btn-secondary:hover {
+  color: var(--text);
+  border-color: var(--blue);
+}
+
+.btn-apply {
+  background: var(--surface);
+  border: 1px solid var(--blue);
+  border-radius: 8px;
+  color: var(--blue);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 9px 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-apply:hover:not(:disabled) {
+  background: rgba(59, 130, 246, 0.12);
+}
+
+.btn-apply:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-apply--saved {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+/* ── IP Simulation Input ── */
+
+.ip-sim-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.78rem;
+  width: 130px;
+  outline: none;
+  padding: 2px 4px;
+  transition: border-color 0.15s;
+}
+
+.ip-sim-input:focus {
+  border-bottom-color: var(--blue);
+}
+
+.ip-sim-input::placeholder {
+  color: var(--muted);
+}
+
+/* ── IP Config ── */
+
+.ip-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ip-empty {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.ip-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.ip-current {
+  color: var(--green);
+}
+
+.btn-remove {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 0.78rem;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+  flex-shrink: 0;
+}
+
+.btn-remove:hover:not(:disabled) {
+  color: var(--red);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.btn-remove:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ip-add-row {
+  display: flex;
+  gap: 8px;
+}
+
+.ip-add-row input {
+  flex: 1;
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: var(--text);
+  font-size: 0.82rem;
+  font-family: 'Consolas', 'Fira Code', monospace;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.ip-add-row input:focus {
+  border-color: var(--blue);
+}
+
+.ip-add-row input::placeholder {
+  color: var(--muted);
+}
+
+/* ── Leaflet overrides ── */
+
+.leaflet-container {
+  background: #1a2535;
+}
